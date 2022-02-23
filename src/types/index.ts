@@ -1,0 +1,1 @@
+export type { IOneCallForecast } from './IOneCallForecast';
