@@ -15,7 +15,7 @@ class OwpService {
     return res.data;
   }
 
-  async getCoordinates(cityName: string) {
+  async searchCity(cityName: string) {
     const res = await OpwApiCore.get<IGeocoding[]>(this.geocodingPath, {
       params: {
         q: cityName,
