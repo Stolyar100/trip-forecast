@@ -1,5 +1,8 @@
+import { IOneCallForecast } from ".";
+
 export interface IGeocodingIndexed extends IGeocoding {
   id: string;
+  weather?: IOneCallForecast
 }
 
 export interface IGeocoding {
