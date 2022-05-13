@@ -1,3 +1,7 @@
+export interface IGeocodingIndexed extends IGeocoding {
+  id: string;
+}
+
 export interface IGeocoding {
   name: string;
   local_names?: LocalNames;
