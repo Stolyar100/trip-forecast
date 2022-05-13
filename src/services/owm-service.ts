@@ -1,5 +1,5 @@
 import OpwApiCore from '../api-cores/opw-api-core';
-import { IGeocoding, IOneCallForecast } from '../types';
+import { IGeocoding, IGeocodingIndexed, IOneCallForecast } from '../types';
 
 class OwpService {
   private oneCallPath = '/data/2.5/onecall';
@@ -19,9 +19,13 @@ class OwpService {
     const res = await OpwApiCore.get<IGeocoding[]>(this.geocodingPath, {
       params: {
         q: cityName,
-      }
-    })
-    return res.data
+      },
+    });
+    const resultWithId: IGeocodingIndexed[] = res.data.map(city => ({
+      ...city,
+      id: `${city.lat}${city.lon}`
+    }))
+    return resultWithId;
   }
 }
 
