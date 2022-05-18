@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IGeocodingIndexed } from '../../types';
+import { fetchSearchCity } from './search-action-creators';
 
 interface SearchState {
   citySearchResult: IGeocodingIndexed[];
@@ -18,6 +19,27 @@ export const searchSlice = createSlice({
   initialState,
   reducers: {
     clearSearchResult(state) {
+      state.citySearchResult = [];
+    },
+  },
+  extraReducers: {
+    [fetchSearchCity.fulfilled.type]: (
+      state,
+      action: PayloadAction<IGeocodingIndexed[]>
+    ) => {
+      state.isLoading = false;
+      state.error = '';
+      state.citySearchResult = action.payload;
+    },
+    [fetchSearchCity.pending.type]: (
+      state,
+      action: PayloadAction<IGeocodingIndexed[]>
+    ) => {
+      state.isLoading = true;
+    },
+    [fetchSearchCity.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.error = action.payload;
       state.citySearchResult = [];
     },
   },
