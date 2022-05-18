@@ -15,10 +15,11 @@ class OwmService {
     }).then((res) => res.data);
   }
 
-  async searchCity(cityName: string) {
+  async searchCity(cityName: string, resultsLimit = 5) {
     return OpwApiCore.get<IGeocoding[]>(this.geocodingPath, {
       params: {
         q: cityName,
+        limit: resultsLimit,
       },
     }).then((res) => {
       const resultWithId: IGeocodingIndexed[] = res.data.map((city) => ({
