@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import weatherReducer from './reducers/weather-slice';
+import searchReducer from './reducers/search-slice';
 
 const rootReducer = combineReducers({
   weatherReducer,
+  searchReducer,
 });
 
 export const setupStore = () =>
