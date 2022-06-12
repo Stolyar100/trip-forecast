@@ -1,22 +1,71 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IGeocodingIndexed } from '../../types';
+import { IGeocodingIndexed, ITripDay } from '../../types';
+import * as Actions from './weather-action-creators';
 
-interface WeatherState {
+export interface WeatherState {
   cities: IGeocodingIndexed[];
-  schedule: Array<string[]>;
+  tripDays: ITripDay[];
+  isLoading: boolean;
+  error: string;
 }
 
 const initialState: WeatherState = {
   cities: [],
-  schedule: [],
+  tripDays: [],
+  isLoading: false,
+  error: '',
 };
 
-export const WeatherSlice = createSlice({
+export const weatherSlice = createSlice({
   name: 'weather',
   initialState,
-  reducers: {
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(Actions.addLocation.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(Actions.addLocation.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = '';
+        state.tripDays[action.payload.dayIndex].cityIds.push(
+          action.payload.location.id
+        );
+      })
+      .addCase(Actions.addLocation.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(Actions.updateCityWeather.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(Actions.updateCityWeather.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = '';
+        state.cities
+          .filter((city) => city.id !== action.payload.id)
+          .push(action.payload);
+      })
+      .addCase(Actions.updateCityWeather.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(Actions.deleteLocation.fulfilled, (state, action) => {
+        state.tripDays[action.payload.dayIndex].cityIds.filter(
+          (cityId) => cityId !== action.payload.cityId
+        );
+      })
+      .addCase(Actions.addDay.fulfilled, (state) => {
+        state.tripDays.push({ cityIds: [] });
+      })
+      .addCase(Actions.deleteDay.fulfilled, (state, action) => {
+        state.tripDays.splice(action.payload, 1);
+      })
+      .addCase(Actions.deleteCity.fulfilled, (state, action) => {
+        typeof action.payload === 'string' &&
+          state.cities.filter((city) => city.id !== action.payload);
+      });
+  },
+});
 
-  }
-})
-
-export default WeatherSlice.reducer;
+export default weatherSlice.reducer;
