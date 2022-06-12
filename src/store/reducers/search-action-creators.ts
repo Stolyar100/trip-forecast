@@ -1,5 +1,5 @@
-import { AxiosError } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 import OwmService from '../../services/owm-service';
 
 export const fetchSearchCity = createAsyncThunk(
@@ -8,7 +8,11 @@ export const fetchSearchCity = createAsyncThunk(
     const searchResult = await OwmService.searchCity(cityName).catch(
       (e: AxiosError) => thunkAPI.rejectWithValue(e.message)
     );
-    console.log(searchResult);
     return searchResult;
   }
+);
+
+export const clearSearchResult = createAsyncThunk(
+  'search/clearSearchResult',
+  async (payload, thunkAPI) => payload
 );
