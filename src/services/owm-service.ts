@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { AxiosError } from 'axios';
 import OpwApiCore from '../api-cores/opw-api-core';
 import { IGeocoding, IGeocodingIndexed, IOneCallForecast } from '../types';
 
@@ -21,13 +21,17 @@ class OwmService {
         q: cityName,
         limit: resultsLimit,
       },
-    }).then((res) => {
-      const resultWithId: IGeocodingIndexed[] = res.data.map((city) => ({
-        ...city,
-        id: `${city.lat}${city.lon}`,
-      }));
-      return resultWithId;
-    });
+    })
+      .then((res) => {
+        const resultWithId: IGeocodingIndexed[] = res.data.map((city) => ({
+          ...city,
+          id: `${city.lat}${city.lon}`,
+        }));
+        return resultWithId;
+      })
+      .catch((e: AxiosError) => {
+        throw e;
+      });
   }
 }
 
