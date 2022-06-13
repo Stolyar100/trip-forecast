@@ -1,14 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IGeocodingIndexed } from '../../types';
-import { clearSearchResult, fetchSearchCity } from './search-action-creators';
+import {
+  clearSearchResult,
+  fetchSearchCity,
+  hideSearch,
+  showSearch,
+} from './search-action-creators';
 
 interface SearchState {
+  showSearch: boolean;
+  destinationDay: number;
   citySearchResult: IGeocodingIndexed[];
   isLoading: boolean;
   error: string;
 }
 
 const initialState: SearchState = {
+  showSearch: true,
+  destinationDay: 0,
   citySearchResult: [],
   isLoading: false,
   error: '',
@@ -35,6 +44,14 @@ export const searchSlice = createSlice({
       })
       .addCase(clearSearchResult.fulfilled, (state) => {
         state.citySearchResult = [];
+      })
+      .addCase(showSearch.fulfilled, (state) => {
+        state.showSearch = true;
+      })
+      .addCase(hideSearch.fulfilled, (state) => {
+        state.showSearch = false;
+        state.citySearchResult = [];
+        state.error = '';
       });
   },
 });
