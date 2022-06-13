@@ -1,12 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import OwmService from '../../services/owm-service';
-import {
-  IAddLocation,
-  IGeocoding,
-  IGeocodingIndexed,
-  ITripDay,
-} from '../../types';
+import { IAddLocation, IGeocodingIndexed } from '../../types';
 import { IDeleteLocation } from '../../types/IReduxParams';
 import { WeatherState } from './weather-slice';
 
