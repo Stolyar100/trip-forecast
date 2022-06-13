@@ -59,11 +59,8 @@ export const deleteCity = createAsyncThunk(
 );
 
 export const updateCityWeather = createAsyncThunk(
-  'weather/deleteCity',
+  'weather/updateCityWeather',
   async (cityToUpdate: IGeocodingIndexed, thunkAPI) => {
-    const { weatherReducer } = thunkAPI.getState() as {
-      weatherReducer: WeatherState;
-    };
     const { lat, lon } = cityToUpdate;
     return OwmService.getForecast(lat, lon)
       .then((cityWeather) => {
