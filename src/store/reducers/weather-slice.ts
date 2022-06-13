@@ -3,14 +3,14 @@ import { IGeocodingIndexed, ITripDay } from '../../types';
 import * as Actions from './weather-action-creators';
 
 export interface WeatherState {
-  cities: IGeocodingIndexed[];
+  cities: { [id: IGeocodingIndexed['id']]: IGeocodingIndexed };
   tripDays: ITripDay[];
   isLoading: boolean;
   error: string;
 }
 
 const initialState: WeatherState = {
-  cities: [],
+  cities: {},
   tripDays: [],
   isLoading: false,
   error: '',
@@ -26,11 +26,11 @@ export const weatherSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(Actions.addLocation.fulfilled, (state, action) => {
+        const { dayIndex, location } = action.payload;
         state.isLoading = false;
         state.error = '';
-        state.tripDays[action.payload.dayIndex].cityIds.push(
-          action.payload.location.id
-        );
+        state.tripDays[dayIndex].cityIds.push(action.payload.location.id);
+        state.cities[location.id] = location;
       })
       .addCase(Actions.addLocation.rejected, (state, action) => {
         state.isLoading = false;
@@ -42,9 +42,7 @@ export const weatherSlice = createSlice({
       .addCase(Actions.updateCityWeather.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = '';
-        state.cities
-          .filter((city) => city.id !== action.payload.id)
-          .push(action.payload);
+        state.cities[action.payload.id] = action.payload;
       })
       .addCase(Actions.updateCityWeather.rejected, (state, action) => {
         state.isLoading = false;
@@ -63,7 +61,7 @@ export const weatherSlice = createSlice({
       })
       .addCase(Actions.deleteCity.fulfilled, (state, action) => {
         typeof action.payload === 'string' &&
-          state.cities.filter((city) => city.id !== action.payload);
+          delete state.cities[action.payload];
       });
   },
 });
