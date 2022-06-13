@@ -1,8 +1,8 @@
-import { IOneCallForecast } from ".";
+import { IOneCallForecast } from '.';
 
 export interface IGeocodingIndexed extends IGeocoding {
   id: string;
-  weather?: IOneCallForecast
+  weather?: IOneCallForecast;
 }
 
 export interface IGeocoding {
@@ -52,6 +52,7 @@ export interface LocalNames {
   sr?: string | null;
   th?: string | null;
   tr?: string | null;
+  uk?: string | null;
   vi?: string | null;
   zu?: string | null;
 }
