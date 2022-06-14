@@ -45,8 +45,9 @@ export const searchSlice = createSlice({
       .addCase(clearSearchResult.fulfilled, (state) => {
         state.citySearchResult = [];
       })
-      .addCase(showSearch.fulfilled, (state) => {
+      .addCase(showSearch.fulfilled, (state, action) => {
         state.showSearch = true;
+        state.destinationDay = action.payload;
       })
       .addCase(hideSearch.fulfilled, (state) => {
         state.showSearch = false;

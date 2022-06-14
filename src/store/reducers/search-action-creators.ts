@@ -19,7 +19,7 @@ export const clearSearchResult = createAsyncThunk(
 
 export const showSearch = createAsyncThunk(
   'search/showSearch',
-  async (payload, thunkAPI) => payload
+  async (payload: number, thunkAPI) => payload
 );
 
 export const hideSearch = createAsyncThunk(

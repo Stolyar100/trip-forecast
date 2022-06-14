@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import App from './App';
+import App from './controllers/App';
 import { setupStore } from './store/store';
 
 const store = setupStore();
