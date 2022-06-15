@@ -1,16 +1,26 @@
 import { AxiosError } from 'axios';
 import OpwApiCore from '../api-cores/opw-api-core';
-import { IGeocoding, IGeocodingIndexed, IOneCallForecast } from '../types';
+import {
+  IGeocoding,
+  IGeocodingIndexed,
+  IGetForecastConfig,
+  IOneCallForecast,
+} from '../types';
 
 class OwmService {
   private oneCallPath = '/data/2.5/onecall';
   private geocodingPath = '/geo/1.0/direct';
 
-  async getForecast(lat: number, lon: number) {
+  async getForecast(
+    lat: number,
+    lon: number,
+    config: IGetForecastConfig = { units: 'metric', lang: 'uk' }
+  ) {
     return OpwApiCore.get<IOneCallForecast>(this.oneCallPath, {
       params: {
         lat,
         lon,
+        ...config,
       },
     }).then((res) => res.data);
   }

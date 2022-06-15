@@ -5,3 +5,4 @@ export type { IUnits } from './IUnits';
 
 // Not business logic types
 export type { IAddLocation } from './IReduxParams';
+export type { IGetForecastConfig } from './IOwmServiceParams';
