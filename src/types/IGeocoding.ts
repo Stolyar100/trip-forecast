@@ -56,3 +56,5 @@ export interface LocalNames {
   vi?: string | null;
   zu?: string | null;
 }
+
+export type ILanguages = keyof LocalNames;
