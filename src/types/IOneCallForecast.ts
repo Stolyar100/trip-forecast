@@ -23,9 +23,11 @@ export interface Current {
   clouds: number;
   visibility: number;
   wind_speed: number;
+  wind_gust?: number;
   wind_deg: number;
   weather?: WeatherEntity[] | null;
-  rain: Rain;
+  rain?: Rain;
+  snow?: Snow;
 }
 
 export interface WeatherEntity {
@@ -36,7 +38,11 @@ export interface WeatherEntity {
 }
 
 export interface Rain {
-  '1h': number;
+  '1h'?: number;
+}
+
+export interface Snow {
+  '1h'?: number;
 }
 export interface MinutelyEntity {
   dt: number;
@@ -54,9 +60,11 @@ export interface HourlyEntity {
   visibility: number;
   wind_speed: number;
   wind_deg: number;
-  wind_gust: number;
+  wind_gust?: number;
   weather?: WeatherEntity[] | null;
   pop: number;
+  rain?: Rain;
+  snow?: Snow;
 }
 export interface DailyEntity {
   dt: number;
@@ -71,11 +79,13 @@ export interface DailyEntity {
   humidity: number;
   dew_point: number;
   wind_speed: number;
+  wind_gust?: number;
   wind_deg: number;
   weather?: WeatherEntity[] | null;
   clouds: number;
   pop: number;
-  rain: number;
+  rain?: number;
+  snow?: number;
   uvi: number;
 }
 export interface Temp {
