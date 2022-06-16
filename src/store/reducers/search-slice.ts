@@ -16,7 +16,7 @@ interface SearchState {
 }
 
 const initialState: SearchState = {
-  showSearch: true,
+  showSearch: false,
   destinationDay: 0,
   citySearchResult: [],
   isLoading: false,

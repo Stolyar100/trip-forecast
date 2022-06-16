@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   clearSearchResult,
@@ -18,10 +18,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import { IGeocodingIndexed } from '../../types';
-import {
-  addDay,
-  addLocation,
-} from '../../store/reducers/weather-action-creators';
+import { addLocation } from '../../store/reducers/weather-action-creators';
 
 interface SearchProps {}
 
@@ -50,7 +47,6 @@ const Search = (props: SearchProps) => {
     e: React.MouseEvent<HTMLDivElement>,
     location: IGeocodingIndexed
   ) => {
-    await dispatch(addDay());
     await dispatch(addLocation({ dayIndex: destinationDay, location }));
     dispatch(hideSearch());
   };
