@@ -38,85 +38,117 @@ const TripListHeader = ({ addDayClickHandler }: TripListHeaderProps) => {
           </Button>
         </Paper>
 
-        <TripListColumnCard>
-          <Stack
-            component={'ul'}
-            spacing={1}
-            divider={<Divider sx={{ width: '100%' }} />}
-            sx={{ width: '100%', p: 0, alignItems: 'center' }}
-          >
-            <TripInfoField>
-              <Typography
-                sx={{ color: (theme) => theme.palette.text.secondary }}
-              >
-                {' '}
-                Температура, &deg;С{' '}
-              </Typography>
-            </TripInfoField>
-            <TripInfoField>
-              <Typography
-                sx={{ color: (theme) => theme.palette.text.secondary }}
-              >
-                {' '}
-                Відчувається як, &deg;С{' '}
-              </Typography>
-            </TripInfoField>
-            <TripInfoField>
-              <Typography
-                sx={{ color: (theme) => theme.palette.text.secondary }}
-              >
-                {' '}
-                Тиск, гПа{' '}
-              </Typography>
-            </TripInfoField>
-            <TripInfoField>
-              <Typography
-                sx={{ color: (theme) => theme.palette.text.secondary }}
-              >
-                {' '}
-                Вологість, %{' '}
-              </Typography>
-            </TripInfoField>
-            <TripInfoField>
-              <Typography
-                sx={{ color: (theme) => theme.palette.text.secondary }}
-              >
-                {' '}
-                Швидкість вітру, м/сек.{' '}
-              </Typography>
-            </TripInfoField>
-            <TripInfoField>
-              <Typography
-                sx={{ color: (theme) => theme.palette.text.secondary }}
-              >
-                {' '}
-                Імовірність опадів, %.{' '}
-              </Typography>
-            </TripInfoField>
-            <TripInfoField>
-              <Typography
-                sx={{ color: (theme) => theme.palette.text.secondary }}
-              >
-                {' '}
-                Дощ, мм.{' '}
-              </Typography>
-            </TripInfoField>
-            <TripInfoField>
-              <Typography
-                sx={{ color: (theme) => theme.palette.text.secondary }}
-              >
-                {' '}
-                Сніг, мм.{' '}
-              </Typography>
-            </TripInfoField>
-            <TripInfoField>
-              <Typography
-                sx={{ color: (theme) => theme.palette.text.secondary }}
-              >
-                {' '}
-                Індекс УФ, УФІ.{' '}
-              </Typography>
-            </TripInfoField>
+        <TripListColumnCard maxHeight>
+          <Stack spacing={0.85} divider={<Divider sx={{ width: '100%' }} />}>
+            <Stack
+              spacing={0.75}
+              component={'ul'}
+              divider={<Divider sx={{ width: '100%' }} />}
+              sx={{
+                width: '100%',
+                p: 0,
+                m: 0,
+                alignItems: 'center',
+                marginTop: '0.86rem',
+              }}
+            >
+              <TripInfoField>
+                <Typography
+                  variant={'body2'}
+                  sx={{ color: (theme) => theme.palette.text.secondary }}
+                >
+                  Частина доби
+                </Typography>
+              </TripInfoField>
+              <TripInfoField>
+                <Typography
+                  variant={'body2'}
+                  sx={{ color: (theme) => theme.palette.text.secondary }}
+                >
+                  Температура, &deg;С
+                </Typography>
+              </TripInfoField>
+              <TripInfoField>
+                <Typography
+                  variant={'body2'}
+                  sx={{ color: (theme) => theme.palette.text.secondary }}
+                >
+                  {' '}
+                  Відчувається як, &deg;С{' '}
+                </Typography>
+              </TripInfoField>
+            </Stack>
+            <Stack
+              component={'ul'}
+              spacing={1}
+              divider={<Divider sx={{ width: '100%' }} />}
+              sx={{
+                width: '100%',
+                p: 0,
+                m: 0,
+                alignItems: 'center',
+                paddingTop: '0.07rem',
+              }}
+            >
+              <TripInfoField>
+                <Typography
+                  variant={'body2'}
+                  sx={{ color: (theme) => theme.palette.text.secondary }}
+                >
+                  {' '}
+                  Тиск
+                </Typography>
+              </TripInfoField>
+              <TripInfoField>
+                <Typography
+                  variant={'body2'}
+                  sx={{ color: (theme) => theme.palette.text.secondary }}
+                >
+                  Вологість
+                </Typography>
+              </TripInfoField>
+              <TripInfoField>
+                <Typography
+                  variant={'body2'}
+                  sx={{ color: (theme) => theme.palette.text.secondary }}
+                >
+                  Швидкість вітру
+                </Typography>
+              </TripInfoField>
+              <TripInfoField>
+                <Typography
+                  variant={'body2'}
+                  sx={{ color: (theme) => theme.palette.text.secondary }}
+                >
+                  {' '}
+                  Імовірність опадів
+                </Typography>
+              </TripInfoField>
+              <TripInfoField>
+                <Typography
+                  variant={'body2'}
+                  sx={{ color: (theme) => theme.palette.text.secondary }}
+                >
+                  Дощ
+                </Typography>
+              </TripInfoField>
+              <TripInfoField>
+                <Typography
+                  variant={'body2'}
+                  sx={{ color: (theme) => theme.palette.text.secondary }}
+                >
+                  Сніг
+                </Typography>
+              </TripInfoField>
+              <TripInfoField>
+                <Typography
+                  variant={'body2'}
+                  sx={{ color: (theme) => theme.palette.text.secondary }}
+                >
+                  Індекс УФ
+                </Typography>
+              </TripInfoField>
+            </Stack>
           </Stack>
         </TripListColumnCard>
       </Stack>

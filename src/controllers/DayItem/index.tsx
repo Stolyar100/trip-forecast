@@ -21,6 +21,8 @@ import {
 import OwmService from '../../services/owm-service';
 import TripInfoField from '../../components/TripInfoField';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 
 interface DayItemProps {
   tripDayIndex: number;
@@ -127,148 +129,185 @@ const DayItem = ({ tripDayIndex }: DayItemProps) => {
             </Stack>
           )}
         </TripListColumnCard>
-        <TripListColumnCard>
+        <TripListColumnCard maxHeight>
           {selectedCityWeather?.daily ? (
             <Stack
               component={'ul'}
               spacing={1}
               divider={<Divider sx={{ width: '100%' }} />}
-              sx={{ width: '100%', p: 0, alignItems: 'center' }}
+              sx={{
+                width: '100%',
+                p: 0,
+                marginBottom: 0,
+                alignItems: 'center',
+              }}
             >
-              <TripInfoField>
-                <Stack direction={'row'} spacing={3} justifyContent={'center'}>
-                  <Typography
-                    variant={'body2'}
-                    sx={{
-                      color: (theme) => theme.palette.text.secondary,
-                      fontSize: '0.65rem',
-                    }}
-                  >
-                    Ранок
-                  </Typography>
-                  <Typography
-                    variant={'body2'}
-                    sx={{
-                      color: (theme) => theme.palette.text.secondary,
-                      fontSize: '0.65rem',
-                    }}
-                  >
-                    День
-                  </Typography>
-                  <Typography
-                    variant={'body2'}
-                    sx={{
-                      color: (theme) => theme.palette.text.secondary,
-                      fontSize: '0.65rem',
-                    }}
-                  >
-                    Вечір
-                  </Typography>
-                  <Typography
-                    variant={'body2'}
-                    sx={{
-                      color: (theme) => theme.palette.text.secondary,
-                      fontSize: '0.65rem',
-                    }}
-                  >
-                    Ніч
-                  </Typography>
-                </Stack>
-              </TripInfoField>
-              <TripInfoField>
-                <Stack direction={'row'} spacing={2}>
-                  <Typography
-                    variant={'body2'}
-                    sx={{
-                      fontSize: '0.7rem',
-                      color: (theme) => theme.palette.text.secondary,
-                    }}
-                  >
-                    {selectedCityWeather?.daily?.[tripDayIndex]?.temp.morn}&deg;
-                  </Typography>
-                  <Typography
-                    variant={'body2'}
-                    sx={{
-                      fontSize: '0.7rem',
-                      color: (theme) => theme.palette.text.secondary,
-                    }}
-                  >
-                    {selectedCityWeather?.daily?.[tripDayIndex]?.temp.day}&deg;
-                  </Typography>
-                  <Typography
-                    variant={'body2'}
-                    sx={{
-                      fontSize: '0.7rem',
-                      color: (theme) => theme.palette.text.secondary,
-                    }}
-                  >
-                    {selectedCityWeather?.daily?.[tripDayIndex]?.temp.eve}&deg;
-                  </Typography>
-                  <Typography
-                    variant={'body2'}
-                    sx={{
-                      fontSize: '0.7rem',
-                      color: (theme) => theme.palette.text.secondary,
-                    }}
-                  >
-                    {selectedCityWeather?.daily?.[tripDayIndex]?.temp.night}
-                    &deg;
-                  </Typography>
-                </Stack>
-              </TripInfoField>
-              <TripInfoField>
-                <Stack direction={'row'} spacing={2}>
-                  <Typography
-                    variant={'body2'}
-                    sx={{
-                      fontSize: '0.7rem',
-                      color: (theme) => theme.palette.text.secondary,
-                    }}
-                  >
-                    {
-                      selectedCityWeather?.daily?.[tripDayIndex]?.feels_like
-                        .morn
-                    }
-                    &deg;
-                  </Typography>
-                  <Typography
-                    variant={'body2'}
-                    sx={{
-                      fontSize: '0.7rem',
-                      color: (theme) => theme.palette.text.secondary,
-                    }}
-                  >
-                    {selectedCityWeather?.daily?.[tripDayIndex]?.feels_like.day}
-                    &deg;
-                  </Typography>
-                  <Typography
-                    variant={'body2'}
-                    sx={{
-                      fontSize: '0.7rem',
-                      color: (theme) => theme.palette.text.secondary,
-                    }}
-                  >
-                    {selectedCityWeather?.daily?.[tripDayIndex]?.feels_like.eve}
-                    &deg;
-                  </Typography>
-                  <Typography
-                    variant={'body2'}
-                    sx={{
-                      fontSize: '0.7rem',
-                      color: (theme) => theme.palette.text.secondary,
-                    }}
-                  >
-                    {
-                      selectedCityWeather?.daily?.[tripDayIndex]?.feels_like
-                        .night
-                    }
-                    &deg;
-                  </Typography>
-                </Stack>
-              </TripInfoField>
+              <Box>
+                <Grid container rowSpacing={1}>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant={'body2'}
+                      sx={{
+                        color: (theme) => theme.palette.text.secondary,
+                        fontSize: '0.65rem',
+                      }}
+                    >
+                      Ранок
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant={'body2'}
+                      sx={{
+                        color: (theme) => theme.palette.text.secondary,
+                        fontSize: '0.65rem',
+                      }}
+                    >
+                      День
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3} columnSpacing={4}>
+                    <Typography
+                      variant={'body2'}
+                      sx={{
+                        color: (theme) => theme.palette.text.secondary,
+                        fontSize: '0.65rem',
+                      }}
+                    >
+                      Вечір
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant={'body2'}
+                      sx={{
+                        color: (theme) => theme.palette.text.secondary,
+                        fontSize: '0.65rem',
+                      }}
+                    >
+                      Ніч
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Divider />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant={'body2'}
+                      sx={{
+                        fontSize: '0.7rem',
+                        color: (theme) => theme.palette.text.secondary,
+                      }}
+                    >
+                      {selectedCityWeather?.daily?.[tripDayIndex]?.temp.morn}
+                      &deg;
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant={'body2'}
+                      sx={{
+                        fontSize: '0.7rem',
+                        color: (theme) => theme.palette.text.secondary,
+                      }}
+                    >
+                      {selectedCityWeather?.daily?.[tripDayIndex]?.temp.day}
+                      &deg;
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant={'body2'}
+                      sx={{
+                        fontSize: '0.7rem',
+                        color: (theme) => theme.palette.text.secondary,
+                      }}
+                    >
+                      {selectedCityWeather?.daily?.[tripDayIndex]?.temp.eve}
+                      &deg;
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant={'body2'}
+                      sx={{
+                        fontSize: '0.7rem',
+                        color: (theme) => theme.palette.text.secondary,
+                      }}
+                    >
+                      {selectedCityWeather?.daily?.[tripDayIndex]?.temp.night}
+                      &deg;
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Divider />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant={'body2'}
+                      sx={{
+                        fontSize: '0.7rem',
+                        color: (theme) => theme.palette.text.secondary,
+                      }}
+                    >
+                      {
+                        selectedCityWeather?.daily?.[tripDayIndex]?.feels_like
+                          .morn
+                      }
+                      &deg;
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant={'body2'}
+                      sx={{
+                        fontSize: '0.7rem',
+                        color: (theme) => theme.palette.text.secondary,
+                      }}
+                    >
+                      {
+                        selectedCityWeather?.daily?.[tripDayIndex]?.feels_like
+                          .day
+                      }
+                      &deg;
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant={'body2'}
+                      sx={{
+                        fontSize: '0.7rem',
+                        color: (theme) => theme.palette.text.secondary,
+                      }}
+                    >
+                      {
+                        selectedCityWeather?.daily?.[tripDayIndex]?.feels_like
+                          .eve
+                      }
+                      &deg;
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography
+                      variant={'body2'}
+                      sx={{
+                        fontSize: '0.75rem',
+                        color: (theme) => theme.palette.text.secondary,
+                      }}
+                    >
+                      {
+                        selectedCityWeather?.daily?.[tripDayIndex]?.feels_like
+                          .night
+                      }
+                      &deg;
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
 
               <TripInfoField>
                 <Typography
+                  variant={'body2'}
                   sx={{ color: (theme) => theme.palette.text.secondary }}
                 >
                   {selectedCityWeather.daily[tripDayIndex].pressure} гПа
@@ -276,6 +315,7 @@ const DayItem = ({ tripDayIndex }: DayItemProps) => {
               </TripInfoField>
               <TripInfoField>
                 <Typography
+                  variant={'body2'}
                   sx={{ color: (theme) => theme.palette.text.secondary }}
                 >
                   {selectedCityWeather.daily[tripDayIndex].humidity} %
@@ -283,6 +323,7 @@ const DayItem = ({ tripDayIndex }: DayItemProps) => {
               </TripInfoField>
               <TripInfoField>
                 <Typography
+                  variant={'body2'}
                   sx={{ color: (theme) => theme.palette.text.secondary }}
                 >
                   {selectedCityWeather.daily[tripDayIndex].wind_speed} м/сек.
@@ -290,6 +331,7 @@ const DayItem = ({ tripDayIndex }: DayItemProps) => {
               </TripInfoField>
               <TripInfoField>
                 <Typography
+                  variant={'body2'}
                   sx={{ color: (theme) => theme.palette.text.secondary }}
                 >
                   {selectedCityWeather.daily[tripDayIndex].pop} %
@@ -297,6 +339,7 @@ const DayItem = ({ tripDayIndex }: DayItemProps) => {
               </TripInfoField>
               <TripInfoField>
                 <Typography
+                  variant={'body2'}
                   sx={{ color: (theme) => theme.palette.text.secondary }}
                 >
                   {selectedCityWeather.daily[tripDayIndex].rain || '-'} мм.
@@ -304,14 +347,15 @@ const DayItem = ({ tripDayIndex }: DayItemProps) => {
               </TripInfoField>
               <TripInfoField>
                 <Typography
+                  variant={'body2'}
                   sx={{ color: (theme) => theme.palette.text.secondary }}
                 >
                   {selectedCityWeather.daily[tripDayIndex].snow || '-'} мм.
-                  Сніг, мм.
                 </Typography>
               </TripInfoField>
               <TripInfoField>
                 <Typography
+                  variant={'body2'}
                   sx={{ color: (theme) => theme.palette.text.secondary }}
                 >
                   {selectedCityWeather.daily[tripDayIndex].uvi} УФІ.

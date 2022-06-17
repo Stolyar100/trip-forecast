@@ -12,7 +12,7 @@ const TripListColumn = ({ children }: TripListColumnProps) => {
       sx={{
         textAlign: 'center',
         p: 0.5,
-        minHeight: '100vh',
+        maxWidth: '240px',
         backgroundColor: (theme) => theme.palette.grey.A200,
       }}
     >

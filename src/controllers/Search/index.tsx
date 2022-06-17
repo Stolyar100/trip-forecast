@@ -53,7 +53,7 @@ const Search = (props: SearchProps) => {
   };
 
   if (!showSearch) {
-    return <>пошуку не буде</>;
+    return <></>;
   }
 
   return (
