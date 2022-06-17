@@ -10,6 +10,7 @@ import {
 class OwmService {
   private oneCallPath = '/data/2.5/onecall';
   private geocodingPath = '/geo/1.0/direct';
+  private iconPath = 'http://openweathermap.org/img/wn/';
 
   async getForecast(
     lat: number,
@@ -42,6 +43,10 @@ class OwmService {
       .catch((e: AxiosError) => {
         throw e;
       });
+  }
+
+  getIconUrl(icon: string) {
+    return `${this.iconPath}/${icon}@2x.png`;
   }
 }
 

@@ -41,6 +41,7 @@ const Search = (props: SearchProps) => {
 
   const onClickClose: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     dispatch(hideSearch());
+    setSearchInput('');
   };
 
   const onClickLocation = async (

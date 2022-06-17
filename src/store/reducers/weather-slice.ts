@@ -49,9 +49,9 @@ export const weatherSlice = createSlice({
         state.error = action.payload as string;
       })
       .addCase(Actions.deleteLocation.fulfilled, (state, action) => {
-        state.tripDays[action.payload.dayIndex].cityIds.filter(
-          (cityId) => cityId !== action.payload.cityId
-        );
+        state.tripDays[action.payload.dayIndex].cityIds = state.tripDays[
+          action.payload.dayIndex
+        ].cityIds.filter((cityId) => cityId !== action.payload.cityId);
       })
       .addCase(Actions.addDay.fulfilled, (state) => {
         state.tripDays.push({ cityIds: [] });
