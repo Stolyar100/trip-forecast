@@ -11,7 +11,7 @@ const TripBoard = (props: TripBoardProps) => {
   const dispatch = useAppDispatch();
   const { tripDays } = useAppSelector((state) => state.weatherReducer);
 
-  const addDayClickHendler: React.MouseEventHandler<HTMLButtonElement> = (
+  const addDayClickHandler: React.MouseEventHandler<HTMLButtonElement> = (
     e
   ) => {
     dispatch(addDay());
@@ -20,7 +20,7 @@ const TripBoard = (props: TripBoardProps) => {
   return (
     <>
       <Stack direction="row" spacing={0.5}>
-        <TripListHeader addDayClickHandler={addDayClickHendler} />
+        <TripListHeader addDayClickHandler={addDayClickHandler} />
         {tripDays.map((tripDay, tripDayIndex) => (
           <DayItem tripDayIndex={tripDayIndex} key={tripDayIndex} />
         ))}
