@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import LsService from '../../services/ls-service';
 import { IGeocodingIndexed, ITripDay } from '../../types';
 import * as Actions from './weather-action-creators';
 
@@ -9,7 +10,9 @@ export interface WeatherState {
   error: string;
 }
 
-const initialState: WeatherState = {
+const savedState = LsService.loadWeatherState();
+
+const initialState: WeatherState = savedState || {
   cities: {},
   tripDays: [],
   isLoading: false,
